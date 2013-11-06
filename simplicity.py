@@ -41,9 +41,16 @@ class Robot(basebot.BaseBot):
 			if not valid_choices:
 				return ['guard']
 
-		# Run around the board
-		loc = random.choice(valid_choices)
-	
+		# Run around the board, with a preference to the center
+		loc1 = random.choice(valid_choices)
+		loc2 = random.choice(valid_choices)
+
+		# But with some randomness to throw opponent logic offguard :)
+		if center_distance(loc1) < center_distance(loc2) and random.choice[1,2] == 1:
+			loc = loc1
+		else:
+			loc = loc2
+			
 		return ['move',loc]
 
 			
